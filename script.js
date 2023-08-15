@@ -44,7 +44,7 @@ let lat;
 let lon;
 
 function search(){ // uses openweathermap's geo api to find latitude and longitude based on zip code
-    geoURL = `http://api.openweathermap.org/geo/1.0/zip?zip=${zipCodeInput.value},US&appid=${apiKey}`;
+    geoURL = `https://api.openweathermap.org/geo/1.0/zip?zip=${zipCodeInput.value},US&appid=${apiKey}`;
     fetch(geoURL)
     .then(function(reponse){
         return reponse.json();
@@ -60,7 +60,7 @@ function search(){ // uses openweathermap's geo api to find latitude and longitu
             const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
             fetchWeatherData(weatherURL);
         }else if(airpollutionPanel.style.display != "none"){
-            const airURL = `http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+            const airURL = `https://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
             fetchAirData(airURL);
         }
     });
@@ -74,7 +74,7 @@ function fetchWeatherData(weatherURL){ // fetch data from openweathermap's api t
     .then(function(weatherJSON){
         weatherZipCode.innerText = `Zip Code: ${zipCodeInput.value}`;
         weatherDescription.innerText = weatherJSON.weather[0].description.toUpperCase();
-        weatherConditionIcon.src = `http://openweathermap.org/img/wn/${weatherJSON.weather[0].icon}@4x.png`;
+        weatherConditionIcon.src = `https://openweathermap.org/img/wn/${weatherJSON.weather[0].icon}@4x.png`;
         temperature.innerText = `${Math.round(weatherJSON.main.temp)}°F`;
         low.innerText = `${Math.round(weatherJSON.main.temp_min)}°F`;
         high.innerText = `${Math.round(weatherJSON.main.temp_max)}°F`;
